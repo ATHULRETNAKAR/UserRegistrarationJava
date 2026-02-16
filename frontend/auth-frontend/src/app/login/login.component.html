@@ -1,0 +1,70 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+
+    <!-- Card -->
+    <div class="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8 w-[380px]">
+  
+      <!-- Logo/Title -->
+      <h2 class="text-3xl font-bold text-center text-white mb-2">
+        Welcome Back 🚀
+      </h2>
+      <p class="text-center text-gray-300 mb-8">Login to continue</p>
+  
+      <!-- Email -->
+      <div class="mb-4">
+        <input 
+          [(ngModel)]="email"
+          placeholder="Email address"
+          class="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500"
+        >
+      </div>
+  
+      <!-- Password -->
+      <div class="mb-4 relative">
+        <input 
+          [(ngModel)]="password"
+          [type]="showPassword ? 'text' : 'password'"
+          placeholder="Password"
+          class="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500"
+        >
+  
+        <!-- Show/Hide icon -->
+        <span 
+          (click)="togglePassword()"
+          class="absolute right-3 top-3 cursor-pointer text-gray-300 hover:text-white">
+          {{ showPassword ? '🙈' : '👁️' }}
+        </span>
+      </div>
+  
+      <!-- Login Button -->
+      <button 
+        (click)="loginUser()"
+        class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg transition duration-300 shadow-lg flex items-center justify-center"
+      >
+        <span *ngIf="!loading">Login</span>
+  
+        <!-- Loader -->
+        <span *ngIf="loading" class="flex items-center gap-2">
+          <svg class="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" stroke="white" stroke-width="4" fill="none"/>
+          </svg>
+          Please wait...
+        </span>
+      </button>
+  
+      <!-- Register -->
+      <p class="text-center mt-6 text-gray-300">
+        Don’t have account?
+        <a routerLink="/register" class="text-purple-400 font-semibold hover:underline">
+          Register
+        </a>
+      </p>
+    </div>
+  
+    <!-- 🌟 Toast -->
+    <div *ngIf="toastMessage"
+         class="fixed top-5 right-5 bg-purple-600 text-white px-6 py-3 rounded-lg shadow-xl animate-bounce">
+      {{toastMessage}}
+    </div>
+  
+  </div>
+  

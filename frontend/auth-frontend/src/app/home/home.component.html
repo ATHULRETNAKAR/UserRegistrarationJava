@@ -1,0 +1,43 @@
+<div
+  class="min-h-screen flex flex-col bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white"
+>
+  <!-- 🔷 NAVBAR -->
+  <nav
+    class="flex justify-between items-center px-10 py-5 bg-white/10 backdrop-blur-lg border-b border-white/20"
+  >
+    <h1 class="text-2xl font-bold tracking-wide">Dashboard</h1>
+
+    <div class="flex items-center gap-6">
+      <button
+        (click)="logout()"
+        class="bg-red-500 hover:bg-red-600 px-5 py-2 rounded-lg font-semibold shadow-lg"
+      >
+        Logout
+      </button>
+    </div>
+  </nav>
+
+  <!-- 🔷 MAIN CONTENT (grow area) -->
+  <div class="flex-grow flex items-center justify-center">
+    <!-- 🌟 CARD -->
+    <div
+      class="bg-white/10 backdrop-blur-lg border border-white/20 shadow-2xl rounded-2xl p-12 text-center w-auto hover:scale-105 transition"
+    >
+      <h2 class="text-4xl font-bold mb-4 whitespace-nowrap">
+        Welcome <span class="text-red-400">{{ welcomeMessage }}</span>
+      </h2>
+
+      <p class="text-gray-300 text-lg mb-6">
+        You are successfully logged into your account
+      </p>
+
+    </div>
+  </div>
+
+  <!-- 🔷 FOOTER (always bottom) -->
+  <footer
+    class="text-center text-gray-400 py-4 bg-white/5 backdrop-blur-lg border-t border-white/10"
+  >
+    © 2026 Angular-JavaApp. All rights reserved.
+  </footer>
+</div>

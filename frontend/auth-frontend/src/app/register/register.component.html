@@ -1,0 +1,105 @@
+<div
+  class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900"
+>
+  <!-- Card -->
+  <div
+    class="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8 w-[420px]"
+  >
+    <!-- Title -->
+    <h2 class="text-3xl font-bold text-center text-white mb-2">
+      Create Account 🚀
+    </h2>
+    <p class="text-center text-gray-300 mb-8">Register to get started</p>
+
+    <!-- Name -->
+    <input
+      [(ngModel)]="name"
+      placeholder="Full Name"
+      class="w-full p-3 mb-4 rounded-lg bg-white/20 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500"
+    />
+
+    <!-- Phone -->
+    <input
+      [(ngModel)]="phone"
+      placeholder="Phone Number"
+      class="w-full p-3 mb-4 rounded-lg bg-white/20 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500"
+    />
+
+    <!-- Email -->
+    <input
+      [(ngModel)]="email"
+      placeholder="Email Address"
+      class="w-full p-3 mb-4 rounded-lg bg-white/20 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500"
+    />
+
+    <!-- Password -->
+    <!-- Password -->
+    <div class="relative mb-4">
+      <input
+        [(ngModel)]="password"
+        [type]="showPassword ? 'text' : 'password'"
+        placeholder="Password"
+        class="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500"
+      />
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="relative mb-6">
+      <input
+        [(ngModel)]="confirmPassword"
+        [type]="showPassword ? 'text' : 'password'"
+        placeholder="Confirm Password"
+        class="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500"
+      />
+
+      <span
+        (click)="togglePassword()"
+        class="absolute right-3 top-3 cursor-pointer text-gray-300 hover:text-white"
+      >
+        {{ showPassword ? "🙈" : "👁️" }}
+      </span>
+    </div>
+
+    <!-- Register Button -->
+    <button
+      (click)="registerUser()"
+      class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg transition duration-300 shadow-lg flex items-center justify-center"
+    >
+      <span *ngIf="!loading">Register</span>
+
+      <!-- Loader -->
+      <span *ngIf="loading" class="flex items-center gap-2">
+        <svg class="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="white"
+            stroke-width="4"
+            fill="none"
+          />
+        </svg>
+        Please wait...
+      </span>
+    </button>
+
+    <!-- Login link -->
+    <p class="text-center mt-6 text-gray-300">
+      Already have an account?
+      <a
+        routerLink="/login"
+        class="text-purple-400 font-semibold hover:underline"
+      >
+        Login
+      </a>
+    </p>
+  </div>
+
+  <!-- 🌟 Toast -->
+  <div
+    *ngIf="toastMessage"
+    class="fixed top-5 right-5 bg-purple-600 text-white px-6 py-3 rounded-lg shadow-xl animate-bounce"
+  >
+    {{ toastMessage }}
+  </div>
+</div>

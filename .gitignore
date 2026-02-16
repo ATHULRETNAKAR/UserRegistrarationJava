@@ -1,0 +1,21 @@
+# Node modules (Angular)
+node_modules/
+
+# Angular build
+dist/
+
+# Spring boot
+target/
+*.log
+
+# Environment files
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+

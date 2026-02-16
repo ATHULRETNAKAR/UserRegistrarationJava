@@ -10,6 +10,7 @@ import com.authapp.authbackend.repository.UserRepository;
 import com.authapp.authbackend.config.JwtUtil;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -23,12 +24,26 @@ public class AuthController {
 
     // ✅ REGISTER
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody User user) {
-        if (user == null) {
-            return ResponseEntity.badRequest().body("User data is required");
+    public ResponseEntity<?> registerUser(@RequestBody User user) {
+
+        // 🔴 1. Basic validation
+        if (user.getName() == null || user.getName().isEmpty() ||
+                user.getEmail() == null || user.getEmail().isEmpty() ||
+                user.getPassword() == null || user.getPassword().isEmpty() ||
+                user.getPhone() == null || user.getPhone().isEmpty()) {
+
+            return ResponseEntity.badRequest().body(Map.of("message", "All fields are required"));
         }
+
+        // 🔴 2. Email already exists check
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            return ResponseEntity.badRequest().body(Map.of("message", "Email already registered"));
+        }
+
+        // 🟢 3. Save user
         userRepository.save(user);
-        return ResponseEntity.ok("User saved to MongoDB successfully");
+
+        return ResponseEntity.ok(Map.of("message", "Registration successful"));
     }
 
     // ✅ LOGIN
@@ -61,7 +76,8 @@ public class AuthController {
     public String home(Authentication authentication) {
         String email = authentication.getName();
         return userRepository.findByEmail(email)
-                .map(user -> "Welcome " + user.getName())
+                .map(user -> user.getName())
                 .orElse("Welcome Guest");
     }
+
 }
